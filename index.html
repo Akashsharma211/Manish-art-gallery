@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manish | Art Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- Canvas for the Three.js Galaxy Background -->
+    <canvas id="galaxy-canvas"></canvas>
+
+    <!-- Main Page Content Wrapper -->
+    <div class="page-content">
+        <!-- Header -->
+        <header class="bg-gray-900/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50">
+            <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <h1 class="text-2xl font-bold gallery-title text-white">Manish art Gallery</h1>
+                <nav class="hidden md:flex space-x-8 text-gray-300">
+                    <a href="#gallery" class="nav-link">Gallery</a>
+                    <a href="#artist" class="nav-link">The Artist</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </nav>
+                <button class="md:hidden" id="menu-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 flex flex-col space-y-4">
+                 <a href="#gallery" class="hover:text-indigo-400 transition-colors">Gallery</a>
+                 <a href="#artist" class="hover:text-indigo-400 transition-colors">The Artist</a>
+                 <a href="#contact" class="hover:text-indigo-400 transition-colors">Contact</a>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center justify-center bg-cover bg-center relative">
+            <div class="absolute inset-0 bg-black/50"></div>
+            <div class="text-center p-8 rounded-lg fade-in-section z-10">
+                <h2 class="text-5xl md:text-7xl font-bold text-white gallery-title tracking-wider">Art That Finds the Child We Lost</h2>
+                <p class="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">Explore the arts unbound by boundary of education limits theories or learning, just drawn for the child within forgotten by today's hectic world.</p>
+                <!-- New Galaxy Button -->
+                <a href="#gallery" class="mt-8 inline-block">
+                    <div class="galaxy-button">
+                        <button>
+                            <span class="spark"></span>
+                            <span class="backdrop"></span>
+                            <span class="galaxy__container">
+                                <span class="star star--static"></span>
+                                <span class="star star--static"></span>
+                                <span class="star star--static"></span>
+                                <span class="star star--static"></span>
+                            </span>
+                            <span class="galaxy">
+                                <span class="galaxy__ring">
+                                    <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                                    <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                                    <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                                    <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+                                </span>
+                            </span>
+                            <span class="text">View Collection</span>
+                        </button>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <main id="gallery" class="content-panel container mx-auto px-6 py-20">
+            <div class="text-center mb-16 fade-in-section">
+                <h3 class="text-4xl font-bold gallery-title text-white">The Collection</h3>
+                <p class="text-gray-400 mt-2">Hover over an artwork to reveal its story.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <!-- Art Card 1 -->
+                <div class="card-container h-[450px] fade-in-section">
+                    <div class="card w-full h-full rounded-lg">
+                        <div class="card-front">
+                            <img src="IMG_20250603_212353[1].jpg" alt="deadpool" class="w-full h-full object-cover rounded-lg" onerror="this.onerror=null;this.src='https://placehold.co/600x800/1f2937/ffffff?text=Image+Not+Found';">
+                        </div>
+                        <div class="card-back p-6 rounded-lg flex flex-col justify-center">
+                            <h4 class="text-2xl font-bold text-white gallery-title">Deadpool</h4>
+                            <p class="mt-4 text-gray-300">Made from vibrant and bold colours just like deadpool inspires you to be just as bold as him and make decision you are afraid to make.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Art Card 2 -->
+                <div class="card-container h-[450px] fade-in-section" style="transition-delay: 100ms;">
+                    <div class="card w-full h-full rounded-lg">
+                        <div class="card-front">
+                            <img src="IMG20250719212654[1].jpg" alt="bookmarks" class="w-full h-full object-cover rounded-lg" onerror="this.onerror=null;this.src='https://placehold.co/600x800/1f2937/ffffff?text=Image+Not+Found';">
+                        </div>
+                        <div class="card-back p-6 rounded-lg flex flex-col justify-center">
+                            <h4 class="text-2xl font-bold text-white gallery-title">Bookmarks</h4>
+                            <p class="mt-4 text-gray-300">Customised bookmarks for different genera of books we read.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Art Card 3 -->
+                <div class="card-container h-[450px] fade-in-section" style="transition-delay: 200ms;">
+                    <div class="card w-full h-full rounded-lg">
+                        <div class="card-front">
+                            <img src="IMG_20250815_165808[1].jpg" alt="Krishna" class="w-full h-full object-cover rounded-lg" onerror="this.onerror=null;this.src='https://placehold.co/600x800/1f2937/ffffff?text=Image+Not+Found';">
+                        </div>
+                        <div class="card-back p-6 rounded-lg flex flex-col justify-center">
+                            <h4 class="text-2xl font-bold text-white gallery-title">Krishna ji</h4>
+                            <p class="mt-4 text-gray-300">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।
+मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि॥</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Art Card 4 -->
+                <div class="card-container h-[450px] fade-in-section" style="transition-delay: 300ms;">
+                    <div class="card w-full h-full rounded-lg">
+                        <div class="card-front">
+                            <img src="IMG20250607163820[1].jpg" alt="Eren Yeager" class="w-full h-full object-cover rounded-lg" onerror="this.onerror=null;this.src='https://placehold.co/600x800/1f2937/ffffff?text=Image+Not+Found';">
+                        </div>
+                        <div class="card-back p-6 rounded-lg flex flex-col justify-center">
+                            <h4 class="text-2xl font-bold text-white gallery-title">Tatakae</h4>
+                            <p class="mt-4 text-gray-300"></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Art Card 5 -->
+                <div class="card-container h-[450px] fade-in-section" style="transition-delay: 400ms;">
+                    <div class="card w-full h-full rounded-lg">
+                        <div class="card-front">
+                            <img src="IMG_20240927_170645[1].jpg" alt="Space" class="w-full h-full object-cover rounded-lg" onerror="this.onerror=null;this.src='https://placehold.co/600x800/1f2937/ffffff?text=Image+Not+Found';">
+                        </div>
+                        <div class="card-back p-6 rounded-lg flex flex-col justify-center">
+                            <h4 class="text-2xl font-bold text-white gallery-title">Astronaut</h4>
+                            <p class="mt-4 text-gray-300">This drawing is full of colours depicting the lost childhood dreams. We once sought out.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Art Card 6 -->
+                <div class="card-container h-[450px] fade-in-section" style="transition-delay: 400ms;">
+                    <div class="card w-full h-full rounded-lg">
+                        <div class="card-front">
+                            <img src="IMG_20240927_170754[1].jpg" alt="Zoro" class="w-full h-full object-cover rounded-lg" onerror="this.onerror=null;this.src='https://placehold.co/600x800/1f2937/ffffff?text=Image+Not+Found';">
+                        </div>
+                        <div class="card-back p-6 rounded-lg flex flex-col justify-center">
+                            <h4 class="text-2xl font-bold text-white gallery-title">Roronoa Zoro</h4>
+                            <p class="mt-4 text-gray-300">This drawing took me many hours to make with dadication just like the disciplined character Zoro is.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+
+        <!-- Artist Section -->
+        <!-- Artist Section -->
+        <section id="artist" class="content-panel py-20">
+    <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12 fade-in-section">
+        <div class="md:w-1/3 text-center">
+            <img src="manish photo.jpg" alt="Manish photo" class="rounded-full w-64 h-64 mx-auto object-cover shadow-lg border-4 border-indigo-500" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1f2937/ffffff?text=Artist';">
+        </div>
+        <div class="md:w-2/3 text-center">
+            <h3 class="text-4xl font-bold gallery-title text-white">Manish Agrahari</h3>
+            <p class="text-indigo-400 font-medium mt-1">Dr. by profession artist by passion.</p>
+            <p class="mt-4 text-gray-300 leading-relaxed">
+                Manish Agrahari is a self-taught artist whose journey began in the quiet corners of his childhood. With no formal training, he embraced art as a means of expression, allowing his imagination to run wild. His work is characterized by vibrant colors and whimsical themes that evoke a sense of nostalgia and wonder. Manish's art invites viewers to reconnect with their inner child, celebrating creativity and the joy of discovery. Through his unique perspective, he transforms everyday moments into extraordinary visual stories, making art accessible and relatable to all.
+            </p>
+            <div class="mt-6 flex flex-col items-center space-y-2">
+                <a href="https://www.instagram.com/mani_arts001?utm_source=qr&igsh=MXM4Z2p6b3dhbDI0bw==" class="text-gray-400 hover:text-white transition-transform transform hover:scale-110" aria-label="Instagram">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.316 1.363.364 2.427.048 1.067.06 1.407.06 3.808s-.012 2.741-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.316-2.427.364-1.067.048-1.407.06-3.808.06s-2.741-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.316-1.363-.364-2.427C2.013 14.741 2 14.4 2 12s.013-2.741.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.316 2.427-.364C8.92 2.013 9.26 2 12 2h.315zM12 4.869c-1.933 0-2.242.008-3.033.045-1.052.048-1.558.213-1.89.349-.446.183-.78.423-1.118.762-.337.338-.579.672-.761 1.118-.137.332-.3.838-.349 1.89-.037.791-.045 1.1-.045 3.033s.008 2.242.045 3.033c.048 1.052.213 1.558.349 1.89.182.446.424.78.762 1.118.338.337.672.579 1.118.762.332.136.838.3 1.89.348.791.038 1.1.045 3.033.045s2.242-.008 3.033-.045c1.052-.048 1.558-.213 1.89-.348.446-.182.78-.424 1.118-.762.337-.338.579-.672.761-1.118.136-.332.3-.838.349-1.89.038-.791.045-1.1.045-3.033s-.008-2.242-.045-3.033c-.048-1.052-.213-1.558-.349-1.89-.182-.446-.424-.78-.761-1.118-.338-.337-.672-.579-1.118-.762-.332-.136-.838-.3-1.89-.349-.791-.037-1.1-.045-3.033-.045zm0 2.163a5.057 5.057 0 100 10.114 5.057 5.057 0 000-10.114zM12 15a3 3 0 110-6 3 3 0 010 6zm5.338-9.87a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z" clip-rule="evenodd" /></svg>
+                </a>
+                <p class="text-sm text-gray-400">Check out insta for more artworks and commission works.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- Footer -->
+        <footer id="contact" class="content-panel">
+            <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+                <p>&copy; 2025 Manish gallery. All Rights Reserved.</p>
+                <p class="mt-2">Created by Akash Kumar Sharma.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="index.js" type="module"></script>
+</body>
+</html>

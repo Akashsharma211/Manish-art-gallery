@@ -1,0 +1,359 @@
+
+        /* Custom styles for animations */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0e0220;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden; /* Prevent body scroll, scrolling is handled by .page-content */
+        }
+
+        /* --- New Three.js Galaxy Background --- */
+        #galaxy-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Place it behind all content */
+        }
+        /* --- End Three.js Galaxy Background --- */
+
+        /* Ensure page content is scrollable over the fixed background */
+        .page-content {
+            position: relative;
+            z-index: 1;
+            background-color: transparent;
+            overflow-y: auto;
+            height: 100vh;
+        }
+        
+        .gallery-title {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- Section Separation Styling --- */
+        .content-panel {
+            background-color: rgba(14, 2, 32, 0.5); /* Semi-transparent version of the body background */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- Header Nav Hover Effect --- */
+        .nav-link {
+            position: relative;
+            padding-bottom: 8px;
+            transition: color 0.3s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #7572f4, #ff3e6d);
+            transition: width 0.3s ease-in-out;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .nav-link:hover {
+            color: #fff;
+        }
+
+        .card-container {
+            perspective: 1000px;
+            transition: transform 0.3s ease;
+        }
+        
+        .card {
+            transition: transform 0.7s, box-shadow 0.4s ease;
+            transform-style: preserve-3d;
+            position: relative;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .card-container:hover {
+            transform: scale(1.05);
+        }
+
+        .card-container:hover .card {
+            transform: rotateY(180deg);
+            box-shadow: 0 20px 40px rgba(79, 70, 229, 0.5), 0 15px 30px rgba(236, 72, 153, 0.4);
+        }
+
+        .card-front, .card-back {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            border-image: linear-gradient(45deg, #4f46e5, #ec4899) 1;
+            background-color: #1f2937;
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* --- New Galaxy Button Styles --- */
+        :root {
+            --transition: 0.25s;
+            --spark: 1.8s;
+            --hue: 245;
+        }
+
+        .galaxy-button button {
+            --cut: 0.1em;
+            --active: 0;
+            --bg:
+                radial-gradient(
+                    120% 120% at 126% 126%,
+                    hsl(var(--hue) calc(var(--active) * 97%) 98% / calc(var(--active) * 0.9)) 40%,
+                    transparent 50%
+                ) calc(100px - (var(--active) * 100px)) 0 / 100% 100% no-repeat,	
+                radial-gradient(
+                    120% 120% at 120% 120%,
+                    hsl(var(--hue) calc(var(--active) * 97%) 70% / calc(var(--active) * 1)) 30%,
+                    transparent 70%
+                ) calc(100px - (var(--active) * 100px)) 0 / 100% 100% no-repeat,
+                hsl(var(--hue) calc(var(--active) * 100%) calc(12% - (var(--active) * 8%)));
+            background: var(--bg);
+            font-size: 1.5rem; /* Adjusted font size */
+            font-weight: 500;
+            border: 0;
+            cursor: pointer;
+            padding: 0.9em 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 0.25em;
+            white-space: nowrap;
+            border-radius: 2rem;
+            position: relative;
+            box-shadow:
+                0 0 calc(var(--active) * 6em) calc(var(--active) * 3em) hsl(var(--hue) 97% 61% / 0.5),
+                0 0.05em 0 0 hsl(var(--hue) calc(var(--active) * 97%) calc((var(--active) * 50%) + 30%)) inset,
+                0 -0.05em 0 0 hsl(var(--hue) calc(var(--active) * 97%) calc(var(--active) * 10%)) inset;
+            transition: box-shadow var(--transition), scale var(--transition), background var(--transition);
+            scale: calc(1 + (var(--active) * 0.1));
+            transform-style: preserve-3d;
+            perspective: 100vmin;
+            overflow: hidden;
+        }
+
+        .galaxy-button button:active {
+            scale: 1;
+        }
+
+        .galaxy-button button:hover, .galaxy-button button:focus-visible {
+            --active: 1;
+        }
+
+        .star {
+            height: calc(var(--size) * 1px);
+            aspect-ratio: 1;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            opacity: var(--alpha);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(10deg) rotate(0deg) translateY(calc(var(--distance) * 1px)) ;
+            animation: orbit calc(var(--duration) * 1s) calc(var(--delay) * -1s) infinite linear;
+        }
+
+        @keyframes orbit {
+            to {
+                transform: translate(-50%, -50%) rotate(10deg) rotate(360deg) translateY(calc(var(--distance) * 1px));
+            }
+        }
+
+        .galaxy {
+            position: absolute;
+            width: 100%;
+            aspect-ratio: 1;
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+            overflow: hidden;
+            opacity: var(--active);
+            transition: opacity var(--transition);
+        }
+
+        .galaxy__ring {
+            height: 200%;
+            width: 200%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+            transform: translate(-28%, -40%) rotateX(-24deg) rotateY(-30deg) rotateX(90deg);
+            transform-style: preserve-3d;
+        }
+
+        .galaxy__container {
+            position: absolute;
+            inset: 0;
+            opacity: var(--active);
+            transition: opacity var(--transition);
+            mask: radial-gradient(white, transparent);
+        }
+
+        .star--static {
+            animation: none;
+            top: 50%;
+            left: 50%;
+            transform: translate(0, 0);
+            max-height: 4px;
+            filter: brightness(4);
+            opacity: 0.9;
+            animation:
+                move-x calc(var(--duration) * 0.1s) calc(var(--delay) * -0.1s) infinite linear,
+                move-y calc(var(--duration) * 0.2s) calc(var(--delay) * -0.2s) infinite linear;
+        }
+
+        .galaxy-button button:hover .star--static {
+            animation-play-state: paused;
+        }
+
+        @keyframes move-x {
+            0% { translate: -100px 0; }
+            100% { translate: 100px 0; }
+        }
+
+        @keyframes move-y {
+            0% { transform: translate(0, -50px); }
+            100% { transform: translate(0, 50px); }
+        }
+
+        .spark {
+            position: absolute;
+            inset: 0;
+            border-radius: 2rem;
+            rotate: 0deg;
+            overflow: hidden;
+            mask: linear-gradient(white, transparent 50%);
+            animation: flip calc(var(--spark) * 2) infinite steps(2, end);
+        }
+
+        @keyframes flip {
+            to { rotate: 360deg; }
+        }
+
+        .spark:before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            aspect-ratio: 1;
+            top: 0%;
+            left: 50%;
+            z-index: -1;
+            translate: -50% -15%;
+            rotate: 0;
+            transform: rotate(-90deg);
+            opacity: calc((var(--active)) + 0.4);
+            background: conic-gradient(from 0deg, transparent 0 340deg, white 360deg);
+            transition: opacity var(--transition);
+            animation: rotate var(--spark) linear infinite both;
+        }
+
+        .spark:after {
+            content: "";
+            position: absolute;
+            inset: var(--cut);
+            border-radius: 2rem;
+        }
+
+        .backdrop {
+            position: absolute;
+            inset: var(--cut);
+            background: var(--bg);
+            border-radius: 2rem;
+            transition: background var(--transition);
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(90deg); }
+        }
+
+        .galaxy-button {
+            position: relative;
+        }
+
+                .text {
+            translate: 2% -6%;
+            letter-spacing: 0.01ch;
+            color: hsl(0 0% calc(60% + (var(--active) * 26%)));
+            transition: color var(--transition);
+        }
+
+        header {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .galaxy-button button {
+                font-size: 1.2rem;
+            }
+
+            .card-container {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .galaxy-button button {
+                font-size: 1rem;
+            }
+
+            .card-container {
+                height: 350px;
+            }
+
+            .gallery-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .galaxy-button button {
+                font-size: 1.2rem;
+            }
+
+            .card-container {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .galaxy-button button {
+                font-size: 1rem;
+            }
+
+            .card-container {
+                height: 350px;
+            }
+
+            .gallery-title {
+                font-size: 1.8rem;
+            }
+        }
