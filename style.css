@@ -45,7 +45,9 @@
             position: relative;
             padding-bottom: 8px;
             transition: color 0.3s;
+            
         }
+        
         .nav-link::after {
             content: '';
             position: absolute;
@@ -151,7 +153,7 @@
                 0 0 calc(var(--active) * 6em) calc(var(--active) * 3em) hsl(var(--hue) 97% 61% / 0.5),
                 0 0.05em 0 0 hsl(var(--hue) calc(var(--active) * 97%) calc((var(--active) * 50%) + 30%)) inset,
                 0 -0.05em 0 0 hsl(var(--hue) calc(var(--active) * 97%) calc(var(--active) * 10%)) inset;
-            transition: box-shadow var(--transition), scale var(--transition), background var(--transition);
+            transition: box-shadow var(--transition), scale var(--transition), var(--transition);
             scale: calc(1 + (var(--active) * 0.1));
             transform-style: preserve-3d;
             perspective: 100vmin;
